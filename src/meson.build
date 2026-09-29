@@ -28,6 +28,7 @@ calendar_files = files(
     'SourceDialog/SourceDialog.vala',
     'Widgets/AgendaEventRow.vala',
     'Widgets/CalendarChooser.vala',
+    'Widgets/MiniCalendar.vala',
     'Widgets/CalendarRow.vala',
     'Widgets/DateSwitcher.vala',
     'Widgets/DateTimePicker.vala',

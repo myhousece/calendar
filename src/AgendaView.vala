@@ -30,7 +30,7 @@ public class Maya.View.AgendaView : Gtk.Box {
         );
 
         weekday_label = new Gtk.Label ("") {
-            margin_start = 6,
+            margin_start = 12,
             xalign = 0
         };
         weekday_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
@@ -38,7 +38,6 @@ public class Maya.View.AgendaView : Gtk.Box {
         header_bar = new Hdy.HeaderBar () {
             show_close_button = true
         };
-        header_bar.pack_start (weekday_label);
         header_bar.pack_end (button_add);
         header_bar.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
@@ -103,6 +102,7 @@ public class Maya.View.AgendaView : Gtk.Box {
         });
 
         var box = new Gtk.Box (VERTICAL, 0);
+        box.add (weekday_label);
         box.add (day_label);
         box.add (selected_date_events_list);
         box.add (upcoming_events_list);
@@ -113,9 +113,12 @@ public class Maya.View.AgendaView : Gtk.Box {
             vexpand = true
         };
 
+        var mini_calendar = new Calendar.Widgets.MiniCalendar ();
+
         orientation = VERTICAL;
         add (header_bar);
         add (scrolled_window);
+        add (mini_calendar);
         get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
         // Listen to changes for events
@@ -394,7 +397,7 @@ public class Maya.View.AgendaView : Gtk.Box {
         string formated_weekday = date.format ("%A");
         string new_value = formated_weekday.substring (formated_weekday.index_of_nth_char (1));
         new_value = formated_weekday.get_char (0).totitle ().to_string () + new_value;
-        weekday_label.label = new_value;
+        weekday_label.set_markup ("<b>%s</b>".printf (GLib.Markup.escape_text (new_value)));
         var format = Granite.DateTime.get_default_date_format (false, true, true);
         day_label.label = date.format (format);
         selected_date_events_list.invalidate_filter ();

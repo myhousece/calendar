@@ -108,8 +108,11 @@ public class Maya.View.CalendarView : Gtk.Box {
         header_bar = new Hdy.HeaderBar () {
             show_close_button = true
         };
-        header_bar.pack_start (month_switcher);
-        header_bar.pack_start (year_switcher);
+        var title_box = new Gtk.Box (HORIZONTAL, 6);
+        title_box.add (month_switcher);
+        title_box.add (year_switcher);
+
+        header_bar.set_custom_title (title_box);
         header_bar.pack_start (button_today);
         header_bar.pack_end (menu_button);
         header_bar.pack_end (spinner);

@@ -51,15 +51,15 @@ public class Maya.MainWindow : Hdy.ApplicationWindow {
         };
 
         var hpaned = new Gtk.Paned (HORIZONTAL);
-        hpaned.pack1 (calview, true, false);
-        hpaned.pack2 (sidebar, false, false);
+        hpaned.pack1 (sidebar, false, false);
+        hpaned.pack2 (calview, true, false);
 
         child = hpaned;
         show_all ();
 
         var header_group = new Hdy.HeaderGroup ();
-        header_group.add_header_bar (calview.header_bar);
         header_group.add_header_bar (sidebar.header_bar);
+        header_group.add_header_bar (calview.header_bar);
 
         var size_group = new Gtk.SizeGroup (VERTICAL);
         size_group.add_widget (calview.header_bar);
