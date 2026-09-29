@@ -120,6 +120,7 @@ public class Maya.View.AgendaView : Gtk.Box {
         add (scrolled_window);
         add (mini_calendar);
         get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
+        get_style_context ().add_class ("agenda-view");
 
         // Listen to changes for events
         var calmodel = Calendar.EventStore.get_default ();
